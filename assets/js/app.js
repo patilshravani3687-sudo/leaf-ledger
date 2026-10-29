@@ -67,12 +67,31 @@ function getWateringStatus(nextDateStr) {
 
 let plants = getStoredPlants();
 let searchQuery = '';
+let currentSort = 'next-watering';
 
 const plantForm = document.getElementById('plant-form');
 const plantList = document.getElementById('plant-list');
 const emptyState = document.getElementById('empty-state');
 const noMatchState = document.getElementById('no-match-state');
 const searchInput = document.getElementById('search-input');
+const sortSelect = document.getElementById('sort-select');
+
+function sortPlants(list, sortKey) {
+  return [...list].sort((a, b) => {
+    if (sortKey === 'name') {
+      return (a.name || '').localeCompare(b.name || '', undefined, { sensitivity: 'base' });
+    }
+    if (sortKey === 'recent') {
+      const timeA = new Date(a.createdAt || 0).getTime();
+      const timeB = new Date(b.createdAt || 0).getTime();
+      return timeB - timeA;
+    }
+    // 'next-watering' default
+    const dateA = a.nextWateringDate || '9999-99-99';
+    const dateB = b.nextWateringDate || '9999-99-99';
+    return dateA.localeCompare(dateB);
+  });
+}
 
 function renderPlants() {
   while (plantList.firstChild) {
@@ -88,19 +107,21 @@ function renderPlants() {
   emptyState.classList.add('hidden');
 
   const query = searchQuery.trim().toLowerCase();
-  const visiblePlants = plants.filter(plant => {
+  const filtered = plants.filter(plant => {
     if (!query) return true;
     const nameMatch = plant.name && plant.name.toLowerCase().includes(query);
     const locMatch = plant.location && plant.location.toLowerCase().includes(query);
     return nameMatch || locMatch;
   });
 
-  if (visiblePlants.length === 0) {
+  if (filtered.length === 0) {
     noMatchState.classList.remove('hidden');
     return;
   }
 
   noMatchState.classList.add('hidden');
+
+  const visiblePlants = sortPlants(filtered, currentSort);
 
   visiblePlants.forEach(plant => {
     const card = document.createElement('article');
@@ -262,6 +283,13 @@ plantForm.addEventListener('submit', handleAddPlant);
 if (searchInput) {
   searchInput.addEventListener('input', (event) => {
     searchQuery = event.target.value;
+    renderPlants();
+  });
+}
+
+if (sortSelect) {
+  sortSelect.addEventListener('change', (event) => {
+    currentSort = event.target.value;
     renderPlants();
   });
 }
