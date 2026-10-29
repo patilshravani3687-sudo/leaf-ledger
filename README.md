@@ -386,3 +386,9 @@ Git and GitHub provide version control and a history of incremental development 
 The project combines website development, version control, DevOps automation, and technical documentation in a single application.
 
 **Repository:** https://github.com/patilshravani3687-sudo/leaf-ledger
+### Jenkins Pipeline Execution
+
+![Jenkins Pipeline](07-jenkins-pipeline.png)
+
+*Jenkins build #1 completed successfully. The pipeline generated and archived leaf-ledger-build.zip.*
+
