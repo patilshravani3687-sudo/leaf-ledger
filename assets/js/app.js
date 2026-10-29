@@ -111,6 +111,18 @@ function renderPlants() {
     scheduleRow.appendChild(schedVal);
     body.appendChild(scheduleRow);
 
+    const lastRow = document.createElement('p');
+    lastRow.className = 'plant-detail';
+    const lastLabel = document.createElement('span');
+    lastLabel.className = 'plant-detail-label';
+    lastLabel.textContent = 'Last watered:';
+    const lastVal = document.createElement('span');
+    lastVal.className = 'plant-detail-value';
+    lastVal.textContent = plant.lastWatered ? formatDate(plant.lastWatered) : 'Never';
+    lastRow.appendChild(lastLabel);
+    lastRow.appendChild(lastVal);
+    body.appendChild(lastRow);
+
     const nextRow = document.createElement('p');
     nextRow.className = 'plant-detail';
     const nextLabel = document.createElement('span');
@@ -127,6 +139,15 @@ function renderPlants() {
 
     const actions = document.createElement('div');
     actions.className = 'plant-card-actions';
+
+    const waterBtn = document.createElement('button');
+    waterBtn.className = 'btn btn-water';
+    waterBtn.type = 'button';
+    waterBtn.textContent = '💧 Mark as watered';
+    waterBtn.addEventListener('click', () => {
+      markAsWatered(plant.id);
+    });
+    actions.appendChild(waterBtn);
 
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'btn btn-delete';
@@ -167,6 +188,7 @@ function handleAddPlant(event) {
     location,
     interval,
     createdAt: new Date().toISOString(),
+    lastWatered: null,
     nextWateringDate
   };
 
@@ -176,6 +198,18 @@ function handleAddPlant(event) {
 
   plantForm.reset();
   nameInput.focus();
+}
+
+function markAsWatered(id) {
+  const plant = plants.find(p => p.id === id);
+  if (!plant) return;
+
+  const today = getTodayString();
+  plant.lastWatered = today;
+  plant.nextWateringDate = calculateNextDate(today, plant.interval);
+
+  savePlants(plants);
+  renderPlants();
 }
 
 function deletePlant(id) {

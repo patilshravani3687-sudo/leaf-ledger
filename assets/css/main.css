@@ -276,11 +276,26 @@ body {
 
 .plant-card-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  gap: 8px;
   margin-top: 6px;
-  padding-top: 10px;
+  padding-top: 12px;
   border-top: 1px solid var(--border-subtle);
+}
+
+.btn-water {
+  background-color: #e8f5ed;
+  color: var(--color-green-dark);
+  border: 1px solid #b7dcbe;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-water:hover {
+  background-color: #d4ebd9;
+  border-color: #9eccaa;
 }
 
 .empty-state {
