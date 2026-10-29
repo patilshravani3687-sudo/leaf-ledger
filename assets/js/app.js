@@ -66,10 +66,13 @@ function getWateringStatus(nextDateStr) {
 }
 
 let plants = getStoredPlants();
+let searchQuery = '';
 
 const plantForm = document.getElementById('plant-form');
 const plantList = document.getElementById('plant-list');
 const emptyState = document.getElementById('empty-state');
+const noMatchState = document.getElementById('no-match-state');
+const searchInput = document.getElementById('search-input');
 
 function renderPlants() {
   while (plantList.firstChild) {
@@ -78,12 +81,28 @@ function renderPlants() {
 
   if (plants.length === 0) {
     emptyState.classList.remove('hidden');
+    noMatchState.classList.add('hidden');
     return;
   }
 
   emptyState.classList.add('hidden');
 
-  plants.forEach(plant => {
+  const query = searchQuery.trim().toLowerCase();
+  const visiblePlants = plants.filter(plant => {
+    if (!query) return true;
+    const nameMatch = plant.name && plant.name.toLowerCase().includes(query);
+    const locMatch = plant.location && plant.location.toLowerCase().includes(query);
+    return nameMatch || locMatch;
+  });
+
+  if (visiblePlants.length === 0) {
+    noMatchState.classList.remove('hidden');
+    return;
+  }
+
+  noMatchState.classList.add('hidden');
+
+  visiblePlants.forEach(plant => {
     const card = document.createElement('article');
     card.className = 'plant-card';
     card.setAttribute('data-id', plant.id);
@@ -239,6 +258,13 @@ function deletePlant(id) {
 }
 
 plantForm.addEventListener('submit', handleAddPlant);
+
+if (searchInput) {
+  searchInput.addEventListener('input', (event) => {
+    searchQuery = event.target.value;
+    renderPlants();
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   renderPlants();

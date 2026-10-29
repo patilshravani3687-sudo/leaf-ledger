@@ -53,11 +53,19 @@
       <section class="plants-section">
         <div class="section-header">
           <h2 class="section-title">Your Plants</h2>
+          <div class="controls-bar">
+            <div class="search-box">
+              <input type="text" id="search-input" placeholder="Search by name or location..." aria-label="Search plants" autocomplete="off">
+            </div>
+          </div>
         </div>
 
         <div id="plant-list" class="plant-grid" aria-live="polite"></div>
         <div id="empty-state" class="empty-state hidden">
           <p class="empty-text">No plants added yet. Add your first green friend above!</p>
+        </div>
+        <div id="no-match-state" class="empty-state hidden">
+          <p class="empty-text">No plants match your search.</p>
         </div>
       </section>
     </main>
