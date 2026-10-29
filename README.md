@@ -1,43 +1,50 @@
 # Leaf Ledger 🌿 — Plant Care Tracker
 
-**Name:** Shravani Patil
+A clean, minimalist, and dependable plant care tracker that helps users manage their plants, maintain watering schedules, and keep their indoor greenery healthy.
+
+**Student Name:** Shravani Patil
 **Class:** TY B AIML
 **Roll No.:** 56
+**Institution:** D. Y. Patil College of Engineering & Technology, Kolhapur
 **Subject:** DevOps and Kubernetes (ISE-II)
-**Repository:** https://github.com/patilshravani3687-sudo/leaf-ledger
+**Repository:** [Leaf Ledger on GitHub](https://github.com/patilshravani3687-sudo/leaf-ledger)
 
 ---
 
 ## 1. Introduction and Objective
 
-Leaf Ledger is a lightweight plant care tracker that runs directly in a web browser. It helps plant owners organize their plants, maintain watering schedules, and keep track of which plants need attention.
+Leaf Ledger is a lightweight plant care tracking website built using HTML, CSS, and JavaScript. It helps plant owners organize their plants, monitor watering schedules, and identify which plants require attention.
 
-The website displays plant information, watering schedules, and color-coded status labels. Users can mark plants as watered, search by plant name or location, sort the plant list, and view a daily summary of plants requiring water.
+The website provides plant information, watering status indicators, search and sorting options, and a daily summary of plants that need watering.
 
-Plant information is stored locally using browser `localStorage`, so the website does not require a database server.
+Plant data is stored locally in the browser using `localStorage`, allowing users to retain their information between visits without requiring a database server.
 
-**Objective:**
+### Objectives
 
-* Develop a unique and functional website.
+* Develop a functional and user-friendly website.
+* Implement useful features through incremental development.
 * Use Git and GitHub for version control.
-* Implement at least five meaningful changes with separate commits.
-* Integrate a DevOps tool using Jenkins.
-* Maintain project documentation and screenshots in README.md.
+* Maintain a meaningful commit history.
+* Integrate Jenkins for automated project validation and packaging.
+* Document the application and DevOps integration with screenshots.
 
 ---
 
 ## 2. Technology Stack
 
-| Part                  | Technology                                         |
-| --------------------- | -------------------------------------------------- |
-| Frontend              | HTML5, CSS3, vanilla JavaScript                    |
-| Storage               | Browser localStorage                               |
-| Styling               | CSS variables, Flexbox, CSS Grid                   |
-| Version control       | Git, GitHub                                        |
-| DevOps tool           | Jenkins with a Declarative Pipeline                |
-| JavaScript validation | Node.js, when available in the Jenkins environment |
-| Operating system      | Windows                                            |
-| Execution             | Web browser                                        |
+| Component             | Technology                   |
+| --------------------- | ---------------------------- |
+| Frontend              | HTML5                        |
+| Styling               | CSS3                         |
+| Application logic     | Vanilla JavaScript           |
+| Data storage          | Browser localStorage         |
+| Version control       | Git                          |
+| Source code hosting   | GitHub                       |
+| DevOps tool           | Jenkins                      |
+| Automation            | Declarative Jenkins Pipeline |
+| JavaScript validation | Node.js, when available      |
+| Operating system      | Windows                      |
+| Execution environment | Web browser                  |
 
 ---
 
@@ -45,128 +52,118 @@ Plant information is stored locally using browser `localStorage`, so the website
 
 ```text
 leaf-ledger/
-├── index.html
 ├── assets/
 │   ├── css/
 │   │   └── main.css
 │   └── js/
 │       └── app.js
+├── screenshots/
+│   ├── 01-dashboard.png
+│   ├── git_history.png
+│   ├── github_commits.png
+│   ├── repo_overview.png
+│   └── 07-jenkins-pipeline.png
 ├── Jenkinsfile
 ├── README.md
-├── 01-dashboard.png
-└── screenshots/
+└── index.html
 ```
 
-* `index.html` — Main website structure.
-* `assets/css/main.css` — Website styling and layout.
-* `assets/js/app.js` — Plant tracking and application logic.
-* `Jenkinsfile` — Jenkins pipeline configuration.
-* `README.md` — Project documentation and screenshot evidence.
-* `01-dashboard.png` — Dashboard screenshot.
-* `screenshots/` — Additional project and DevOps evidence.
+### File Description
+
+* **index.html:** Contains the website structure.
+* **assets/css/main.css:** Defines the visual design, layout, and styling.
+* **assets/js/app.js:** Implements plant tracking and application functionality.
+* **Jenkinsfile:** Defines the Jenkins automation pipeline.
+* **README.md:** Documents the project, development workflow, and DevOps integration.
+* **screenshots/:** Contains screenshots demonstrating the website, Git history, GitHub repository, and Jenkins pipeline.
 
 ---
 
 ## 4. How to Run the Website
 
-No installation is required to run the website.
+Leaf Ledger does not require a build process or package installation.
 
 ### Steps
 
 1. Open the [Leaf Ledger GitHub repository](https://github.com/patilshravani3687-sudo/leaf-ledger).
 2. Click **Code → Download ZIP**.
-3. Extract the downloaded ZIP file.
-4. Open the project folder.
+3. Extract the downloaded archive.
+4. Open the extracted project folder.
 5. Double-click `index.html`.
 6. The website opens in your default browser.
 
-Alternatively, clone the repository:
+Alternatively, clone the repository using Git:
 
 ```bash
 git clone https://github.com/patilshravani3687-sudo/leaf-ledger.git
 ```
 
-Open the project directory:
+Open the project folder and launch `index.html` in your browser.
 
-```bash
-cd leaf-ledger
-```
-
-Then open `index.html` in your browser.
-
-### Features
-
-* Plant tracking and watering schedules.
-* Mark-as-watered button with last-watered date.
-* Color-coded plant status labels.
-* Search plants by name or location.
-* Sort plants by watering date, name, or recently added.
-* Daily summary banner for plants needing water.
-* Local data persistence using browser localStorage.
-
-### Leaf Ledger Website
-
-![Leaf Ledger Dashboard](01-dashboard.png)
-
-*Leaf Ledger dashboard screenshot.*
+**Data storage:** Plant information is saved in the browser's localStorage. Data remains available in the same browser unless it is cleared or the application storage is otherwise reset.
 
 ---
 
-## 5. Git and GitHub Workflow
+## 5. Features and Functionality
 
-Git and GitHub were used to maintain the project's source code and track development changes.
+### 5.1 Plant Tracking
 
-### 5.1 Initial Setup
+The application provides a plant tracking interface where users can organize plant information and monitor watering schedules.
 
-Initialize the repository:
+### 5.2 Mark as Watered
 
-```bash
-git init
-```
+Users can mark a plant as watered. The application records the watering date and updates its watering schedule.
 
-Create the main branch:
+### 5.3 Plant Status Indicators
 
-```bash
-git branch -M main
-```
+Color-coded labels help users understand the watering status of each plant.
 
-Connect the GitHub repository:
+* **Overdue:** The plant's watering date has passed.
+* **Due Today:** The plant needs watering today.
+* **Healthy:** The plant is not currently due for watering.
 
-```bash
-git remote add origin https://github.com/patilshravani3687-sudo/leaf-ledger.git
-```
+### 5.4 Search Plants
 
-Stage the project files:
+The search feature filters plants by plant name or location, making it easier to find specific entries.
 
-```bash
-git add .
-```
+### 5.5 Sorting Options
 
-Create the initial commit:
+Users can organize the plant list using available sorting options:
 
-```bash
-git commit -m "Add Leaf Ledger v1: plant tracking and watering schedule"
-```
+* Next watering date.
+* Name in alphabetical order.
+* Recently added plants.
 
-Push the project to GitHub:
+### 5.6 Daily Summary
 
-```bash
-git push -u origin main
-```
+A summary banner displays information about plants that need watering, helping users identify daily plant care tasks quickly.
 
-*Note: The initial setup commands are provided for documentation. The existing repository has already been created and pushed.*
+### 5.7 Local Data Persistence
 
-### 5.2 Workflow Used for Changes
+The application uses browser localStorage to retain plant information between visits without requiring a remote database.
 
-Each feature was developed incrementally and recorded through Git commits.
+---
 
-Check the current status:
+## 6. Git and GitHub Workflow
+
+Git and GitHub were used to track project development and maintain a history of changes.
+
+### 6.1 Repository
+
+**GitHub repository:**
+https://github.com/patilshravani3687-sudo/leaf-ledger
+
+### 6.2 Basic Git Workflow
+
+The following commands demonstrate the workflow used to manage project changes.
+
+Check the working tree:
 
 ```bash
 git status
 ```
 
-Stage the changes:
+Stage modified files:
 
 ```bash
 git add .
@@ -178,7 +175,7 @@ Commit a meaningful change:
 git commit -m "Describe the implemented feature"
 ```
 
-Push the changes:
+Push changes to GitHub:
 
 ```bash
 git push
@@ -190,188 +187,140 @@ View the commit history:
 git log --oneline
 ```
 
-### 5.3 Commit History
+### 6.3 Main Development Commits
 
-The following commits are present in the repository's reported Git history.
+The following eight commits represent the original project development and documentation history.
 
-| #             | Commit    | Message                                               |
-| ------------- | --------- | ----------------------------------------------------- |
-| Initial       | `95f3d1f` | Add Leaf Ledger v1: plant list with watering schedule |
-| 1             | `2db5f2f` | Add mark as watered button with last watered date     |
-| 2             | `24a2ad2` | Add overdue, due today and healthy status chips       |
-| 3             | `759b5ea` | Add plant search by name or location                  |
-| 4             | `a5a8b67` | Add sort options for plant list                       |
-| 5             | `7d2b0f6` | Add daily summary banner for plants needing water     |
-| DevOps        | `d9ac8eb` | Add Jenkinsfile for CI pipeline                       |
-| Documentation | `7252d54` | Add README with project documentation                 |
+| No.     | Commit ID | Change                                                |
+| ------- | --------- | ----------------------------------------------------- |
+| Initial | `95f3d1f` | Add Leaf Ledger v1: plant list with watering schedule |
+| 1       | `2db5f2f` | Add mark as watered button with last watered date     |
+| 2       | `24a2ad2` | Add overdue, due today and healthy status chips       |
+| 3       | `759b5ea` | Add plant search by name or location                  |
+| 4       | `a5a8b67` | Add sort options for plant list                       |
+| 5       | `7d2b0f6` | Add daily summary banner for plants needing water     |
+| 6       | `d9ac8eb` | Add Jenkinsfile for CI pipeline                       |
+| 7       | `7252d54` | Add README with project documentation                 |
 
-**Total reported commits: 8**
+Additional commits were created for screenshot uploads and README updates.
 
-[View Git commit history](https://github.com/patilshravani3687-sudo/leaf-ledger/commits/main)
+**View the complete history:** [Leaf Ledger commits on GitHub](https://github.com/patilshravani3687-sudo/leaf-ledger/commits/main/)
 
----
+### 6.4 Incremental Development
 
-## 6. Changes Made (5 Main Changes)
+The application was improved through separate changes rather than being developed in a single commit.
 
-### Change 1: Mark as Watered
+The changes added watering tracking, status indicators, search, sorting, and a daily summary. Jenkins integration and project documentation were added as separate changes.
 
-**Commit:** `2db5f2f`
-
-Added a button that allows users to record when a plant has been watered.
-
-When the button is clicked, the application updates the last-watered date and recalculates the next watering date.
-
-### Change 2: Plant Status Indicators
-
-**Commit:** `24a2ad2`
-
-Added color-coded status labels to make plant care easier to manage.
-
-* **Overdue:** The watering date has passed.
-* **Due Today:** The plant is due for watering today.
-* **Healthy:** The plant is not currently due for watering.
-
-These labels help users quickly identify plants requiring attention.
-
-### Change 3: Plant Search
-
-**Commit:** `759b5ea`
-
-Added an interactive search feature that filters plants by name or location.
-
-The search updates the displayed plant list as the user types and supports case-insensitive matching.
-
-### Change 4: Sorting Options
-
-**Commit:** `a5a8b67`
-
-Added sorting options for the plant list.
-
-Users can sort plants by:
-
-* Next watering date.
-* Name in alphabetical order.
-* Recently added plants.
-
-Sorting also works with the active search filter.
-
-### Change 5: Daily Summary Banner
-
-**Commit:** `7d2b0f6`
-
-Added a summary banner showing the number of plants requiring watering.
-
-The banner updates according to the current plant statuses and helps users understand their daily plant care requirements.
+This workflow demonstrates how Git records development progress and allows changes to be inspected through commit history.
 
 ---
 
 ## 7. DevOps Tool Integration: Jenkins
 
-Jenkins is used to automate project validation and packaging through a Declarative Pipeline.
+Jenkins is used to automate validation and packaging of the Leaf Ledger website through a Declarative Pipeline.
 
-The pipeline configuration is stored in the root directory of the repository in a file named `Jenkinsfile`.
+The pipeline configuration is stored in the `Jenkinsfile` at the root of the repository.
 
-### 7.1 Jenkins Setup
+### 7.1 Jenkins Environment
 
-Jenkins can be configured on a local Windows machine and accessed through:
+* **DevOps tool:** Jenkins
+* **Version:** 2.568.2
+* **Operating system:** Windows
+* **Job name:** `leaf-ledger-pipeline`
+* **Source control:** GitHub
+* **Branch:** `main`
+* **Pipeline definition:** Pipeline script from SCM
 
-`http://localhost:8080`
+Jenkins was accessed locally through:
 
-The Git and Pipeline plugins are required for the described pipeline setup.
+```text
+http://localhost:8080
+```
 
-### 7.2 Jenkinsfile
+### 7.2 Pipeline Configuration
 
-The `Jenkinsfile` defines the automation stages used to validate and package the Leaf Ledger website.
+The Jenkins job uses the following settings:
 
-| Stage             | What it does                                                          |
-| ----------------- | --------------------------------------------------------------------- |
-| Checkout          | Retrieves the project source code from the configured Git repository. |
-| Verify Files      | Checks whether essential HTML, CSS, and JavaScript files exist.       |
-| Check JavaScript  | Runs a JavaScript syntax check when Node.js is available.             |
-| Package           | Creates a ZIP archive containing the website files.                   |
-| Archive Artifacts | Stores the generated ZIP archive as a Jenkins build artifact.         |
+| Setting          | Value                                                       |
+| ---------------- | ----------------------------------------------------------- |
+| Job name         | `leaf-ledger-pipeline`                                      |
+| Definition       | Pipeline script from SCM                                    |
+| SCM              | Git                                                         |
+| Repository URL   | `https://github.com/patilshravani3687-sudo/leaf-ledger.git` |
+| Branch specifier | `*/main`                                                    |
+| Script path      | `Jenkinsfile`                                               |
 
-### 7.3 Create the Jenkins Job
+### 7.3 Pipeline Stages
+
+| Stage             | Purpose                                                       |
+| ----------------- | ------------------------------------------------------------- |
+| Checkout          | Retrieves the project source code from GitHub.                |
+| Verify Files      | Checks that essential project files are present.              |
+| Check JavaScript  | Performs a JavaScript syntax check when Node.js is available. |
+| Package           | Creates a ZIP archive of the website files.                   |
+| Archive Artifacts | Stores the generated ZIP file as a Jenkins build artifact.    |
+
+### 7.4 Running the Pipeline
+
+The pipeline was executed through the Jenkins interface.
 
 1. Open the Jenkins dashboard.
+2. Open the `leaf-ledger-pipeline` job.
+3. Click **Build Now**.
+4. Wait for the build to complete.
+5. Inspect the build status and pipeline stages.
+6. Verify the generated artifact, if available.
 
-2. Click **New Item**.
+### 7.5 Build Result
 
-3. Enter the job name `leaf-ledger-pipeline`.
+The first Leaf Ledger Jenkins build completed successfully.
 
-4. Select **Pipeline** and click **OK**.
+The Jenkins job displayed a successful build status and generated the following archived artifact:
 
-5. Under the Pipeline section, choose **Pipeline script from SCM**.
+```text
+leaf-ledger-build.zip
+```
 
-6. Select **Git** as the source control management system.
+The artifact contains the packaged website files produced by the pipeline.
 
-7. Enter the repository URL:
-
-   `https://github.com/patilshravani3687-sudo/leaf-ledger.git`
-
-8. Set the branch specifier to `*/main`.
-
-9. Set the script path to `Jenkinsfile`.
-
-10. Save the configuration.
-
-### 7.4 Run the Pipeline
-
-1. Open the Leaf Ledger Jenkins job.
-2. Click **Build Now**.
-3. Open the build details.
-4. Check the pipeline stages and console output.
-5. Verify whether the build completed successfully.
-6. If the pipeline creates an archive, check the build artifacts.
-
-### 7.5 Evidence of Jenkins Integration
-
-Add your own screenshots showing:
-
-* Jenkins job configuration.
-* The Leaf Ledger pipeline stages.
-* Actual build results and console output.
-* The archived ZIP artifact, if generated.
-
-**Important:** The presence of a `Jenkinsfile` confirms that pipeline configuration exists, but a successful build must be verified in Jenkins before claiming successful execution.
+This demonstrates the use of Jenkins for automated project validation and packaging.
 
 ---
 
 ## 8. Screenshots and Project Evidence
 
-Screenshots are included to demonstrate the website, development progress, GitHub repository, and DevOps integration.
+The following screenshots provide evidence of the website, version control workflow, GitHub repository, and Jenkins integration.
 
-### 8.1 Leaf Ledger Dashboard
+### 8.1 Website Dashboard
 
-![Leaf Ledger Dashboard](01-dashboard.png)
+![Leaf Ledger Dashboard](screenshots/01-dashboard.png)
 
-*The Leaf Ledger dashboard running in a browser.*
+*Leaf Ledger website interface.*
 
-### 8.2 Plant Tracking
+### 8.2 Git History
 
-Add a screenshot showing plant cards and their watering schedules.
+![Git History](screenshots/git_history.png)
 
-### 8.3 Plant Status Indicators
+*Git commit history showing incremental development changes.*
 
-Add a screenshot showing the Overdue, Due Today, and Healthy status labels.
+### 8.3 GitHub Commit History
 
-### 8.4 Search and Sorting
+![GitHub Commits](screenshots/github_commits.png)
 
-Add a screenshot demonstrating the search field and sorting options.
+*GitHub page displaying the project's commit history.*
 
-### 8.5 GitHub Repository
+### 8.4 GitHub Repository Overview
 
-Add a screenshot of the repository overview showing the project files and folder structure.
+![Repository Overview](screenshots/repo_overview.png)
 
-### 8.6 Git Commit History
+*Repository overview showing the project files and directory structure.*
 
-Add a screenshot showing the Git commit history and meaningful changes.
+### 8.5 Jenkins Pipeline
 
-### 8.7 Jenkins Pipeline
+![Jenkins Pipeline](screenshots/07-jenkins-pipeline.png)
 
-Add a screenshot of the actual Leaf Ledger Jenkins pipeline and its build results.
-
-**Note:** Only the dashboard screenshot is currently linked in this section. Upload the remaining screenshots to GitHub and add their image links before submitting the project.
+*Jenkins pipeline showing the successful build and archived project artifact.*
 
 ---
 
@@ -379,16 +328,20 @@ Add a screenshot of the actual Leaf Ledger Jenkins pipeline and its build result
 
 Leaf Ledger demonstrates the development of a plant care tracking website using HTML, CSS, and JavaScript.
 
-The project includes plant management, watering schedules, status indicators, searching, sorting, and local data persistence.
+The application includes plant tracking, watering schedules, status indicators, search, sorting, daily summaries, and browser-based data persistence.
 
-Git and GitHub provide version control and a history of incremental development changes. Jenkins provides a pipeline configuration for automated project validation and packaging.
+Git and GitHub were used to manage source code and record incremental development changes. Jenkins was integrated to validate and package the website through an automated pipeline.
 
-The project combines website development, version control, DevOps automation, and technical documentation in a single application.
+The project demonstrates the practical application of website development, version control, CI automation, artifact packaging, and technical documentation.
 
-**Repository:** https://github.com/patilshravani3687-sudo/leaf-ledger
-### Jenkins Pipeline Execution
+---
 
-![Jenkins Pipeline](07-jenkins-pipeline.png)
+## Repository
 
-*Jenkins build #1 completed successfully. The pipeline generated and archived leaf-ledger-build.zip.*
+**Project:** Leaf Ledger — Plant Care Tracker
 
+**GitHub:** https://github.com/patilshravani3687-sudo/leaf-ledger
+
+**DevOps Tool:** Jenkins 2.568.2
+
+**Subject:** DevOps and Kubernetes (ISE-II)
