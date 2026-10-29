@@ -1,0 +1,191 @@
+// Leaf Ledger - Plant Care Tracker (v1)
+
+const STORAGE_KEY = 'leaf_ledger_plants';
+
+function getStoredPlants() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (error) {
+    console.error('Failed to load plants from localStorage:', error);
+    return [];
+  }
+}
+
+function savePlants(plants) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(plants));
+  } catch (error) {
+    console.error('Failed to save plants to localStorage:', error);
+  }
+}
+
+function calculateNextDate(startDateStr, intervalDays) {
+  const date = new Date(startDateStr);
+  date.setDate(date.getDate() + parseInt(intervalDays, 10));
+  return date.toISOString().split('T')[0];
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return 'Not set';
+  const parts = dateStr.split('-');
+  if (parts.length === 3) {
+    const year = parseInt(parts[0], 10);
+    const monthIndex = parseInt(parts[1], 10) - 1;
+    const day = parseInt(parts[2], 10);
+    const d = new Date(year, monthIndex, day);
+    return d.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
+  return dateStr;
+}
+
+function getTodayString() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+let plants = getStoredPlants();
+
+const plantForm = document.getElementById('plant-form');
+const plantList = document.getElementById('plant-list');
+const emptyState = document.getElementById('empty-state');
+
+function renderPlants() {
+  while (plantList.firstChild) {
+    plantList.removeChild(plantList.firstChild);
+  }
+
+  if (plants.length === 0) {
+    emptyState.classList.remove('hidden');
+    return;
+  }
+
+  emptyState.classList.add('hidden');
+
+  plants.forEach(plant => {
+    const card = document.createElement('article');
+    card.className = 'plant-card';
+    card.setAttribute('data-id', plant.id);
+
+    const header = document.createElement('div');
+    header.className = 'plant-card-header';
+
+    const title = document.createElement('h3');
+    title.className = 'plant-card-title';
+    title.textContent = plant.name;
+    header.appendChild(title);
+
+    card.appendChild(header);
+
+    const body = document.createElement('div');
+    body.className = 'plant-card-body';
+
+    const locationRow = document.createElement('p');
+    locationRow.className = 'plant-detail';
+    const locLabel = document.createElement('span');
+    locLabel.className = 'plant-detail-label';
+    locLabel.textContent = 'Location:';
+    const locVal = document.createElement('span');
+    locVal.className = 'plant-detail-value';
+    locVal.textContent = plant.location;
+    locationRow.appendChild(locLabel);
+    locationRow.appendChild(locVal);
+    body.appendChild(locationRow);
+
+    const scheduleRow = document.createElement('p');
+    scheduleRow.className = 'plant-detail';
+    const schedLabel = document.createElement('span');
+    schedLabel.className = 'plant-detail-label';
+    schedLabel.textContent = 'Schedule:';
+    const schedVal = document.createElement('span');
+    schedVal.className = 'plant-detail-value';
+    schedVal.textContent = `Every ${plant.interval} days`;
+    scheduleRow.appendChild(schedLabel);
+    scheduleRow.appendChild(schedVal);
+    body.appendChild(scheduleRow);
+
+    const nextRow = document.createElement('p');
+    nextRow.className = 'plant-detail';
+    const nextLabel = document.createElement('span');
+    nextLabel.className = 'plant-detail-label';
+    nextLabel.textContent = 'Next watering:';
+    const nextVal = document.createElement('span');
+    nextVal.className = 'plant-detail-value';
+    nextVal.textContent = formatDate(plant.nextWateringDate);
+    nextRow.appendChild(nextLabel);
+    nextRow.appendChild(nextVal);
+    body.appendChild(nextRow);
+
+    card.appendChild(body);
+
+    const actions = document.createElement('div');
+    actions.className = 'plant-card-actions';
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'btn btn-delete';
+    deleteBtn.type = 'button';
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.addEventListener('click', () => {
+      deletePlant(plant.id);
+    });
+    actions.appendChild(deleteBtn);
+
+    card.appendChild(actions);
+
+    plantList.appendChild(card);
+  });
+}
+
+function handleAddPlant(event) {
+  event.preventDefault();
+
+  const nameInput = document.getElementById('plant-name');
+  const locationInput = document.getElementById('plant-location');
+  const intervalInput = document.getElementById('plant-interval');
+
+  const name = nameInput.value.trim();
+  const location = locationInput.value.trim();
+  const interval = parseInt(intervalInput.value, 10);
+
+  if (!name || !location || isNaN(interval) || interval < 1) {
+    return;
+  }
+
+  const today = getTodayString();
+  const nextWateringDate = calculateNextDate(today, interval);
+
+  const newPlant = {
+    id: Date.now().toString(),
+    name,
+    location,
+    interval,
+    createdAt: new Date().toISOString(),
+    nextWateringDate
+  };
+
+  plants.push(newPlant);
+  savePlants(plants);
+  renderPlants();
+
+  plantForm.reset();
+  nameInput.focus();
+}
+
+function deletePlant(id) {
+  plants = plants.filter(plant => plant.id !== id);
+  savePlants(plants);
+  renderPlants();
+}
+
+plantForm.addEventListener('submit', handleAddPlant);
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderPlants();
+});

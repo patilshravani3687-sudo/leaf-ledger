@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaf Ledger - Plant Care Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-icon">🌿</span>
+        <div>
+          <h1 class="brand-title">Leaf Ledger</h1>
+          <p class="brand-tagline">Nurture your botanical sanctuary</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="card form-card">
+        <h2 class="section-title">Add a New Plant</h2>
+        <form id="plant-form" class="plant-form" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="plant-name">Plant Name</label>
+              <input type="text" id="plant-name" name="name" placeholder="e.g. Monstera Deliciosa" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="plant-location">Location</label>
+              <input type="text" id="plant-location" name="location" placeholder="e.g. Living Room Window" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="plant-interval">Water Every (Days)</label>
+              <input type="number" id="plant-interval" name="interval" placeholder="e.g. 7" min="1" required>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="add-plant-btn" class="btn btn-primary">
+              <span>+ Add Plant</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="plants-section">
+        <div class="section-header">
+          <h2 class="section-title">Your Plants</h2>
+        </div>
+
+        <div id="plant-list" class="plant-grid" aria-live="polite"></div>
+        <div id="empty-state" class="empty-state hidden">
+          <p class="empty-text">No plants added yet. Add your first green friend above!</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Leaf Ledger &bull; Minimalist Plant Care</p>
+    </footer>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
