@@ -75,6 +75,30 @@ const emptyState = document.getElementById('empty-state');
 const noMatchState = document.getElementById('no-match-state');
 const searchInput = document.getElementById('search-input');
 const sortSelect = document.getElementById('sort-select');
+const summaryBanner = document.getElementById('summary-banner');
+const summaryBannerIcon = document.getElementById('summary-banner-icon');
+const summaryBannerText = document.getElementById('summary-banner-text');
+
+function updateSummaryBanner() {
+  if (!summaryBanner || !summaryBannerIcon || !summaryBannerText) return;
+
+  const today = getTodayString();
+  const needingWater = plants.filter(plant => {
+    return plant.nextWateringDate && plant.nextWateringDate <= today;
+  });
+
+  const count = needingWater.length;
+
+  if (count > 0) {
+    summaryBanner.className = 'summary-banner banner-attention';
+    summaryBannerIcon.textContent = '💧';
+    summaryBannerText.textContent = count === 1 ? '1 plant needs water today' : `${count} plants need water today`;
+  } else {
+    summaryBanner.className = 'summary-banner banner-success';
+    summaryBannerIcon.textContent = '✨';
+    summaryBannerText.textContent = 'All plants are happy';
+  }
+}
 
 function sortPlants(list, sortKey) {
   return [...list].sort((a, b) => {
@@ -94,6 +118,8 @@ function sortPlants(list, sortKey) {
 }
 
 function renderPlants() {
+  updateSummaryBanner();
+
   while (plantList.firstChild) {
     plantList.removeChild(plantList.firstChild);
   }

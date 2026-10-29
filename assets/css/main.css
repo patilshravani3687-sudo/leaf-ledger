@@ -87,6 +87,34 @@ body {
   gap: 24px;
 }
 
+.summary-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all var(--transition-normal);
+}
+
+.summary-banner.banner-success {
+  background-color: #eaf5ee;
+  color: #1b4332;
+  border: 1px solid #c2e5cc;
+}
+
+.summary-banner.banner-attention {
+  background-color: #fdf2ee;
+  color: #a94522;
+  border: 1px solid #f6cfc4;
+}
+
+.summary-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
 .card {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
