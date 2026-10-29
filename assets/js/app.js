@@ -51,6 +51,20 @@ function getTodayString() {
   return `${year}-${month}-${day}`;
 }
 
+function getWateringStatus(nextDateStr) {
+  const today = getTodayString();
+  if (!nextDateStr) {
+    return { label: 'Healthy', className: 'status-healthy' };
+  }
+  if (nextDateStr < today) {
+    return { label: 'Overdue', className: 'status-overdue' };
+  } else if (nextDateStr === today) {
+    return { label: 'Due today', className: 'status-due' };
+  } else {
+    return { label: 'Healthy', className: 'status-healthy' };
+  }
+}
+
 let plants = getStoredPlants();
 
 const plantForm = document.getElementById('plant-form');
@@ -81,6 +95,12 @@ function renderPlants() {
     title.className = 'plant-card-title';
     title.textContent = plant.name;
     header.appendChild(title);
+
+    const status = getWateringStatus(plant.nextWateringDate);
+    const chip = document.createElement('span');
+    chip.className = `status-chip ${status.className}`;
+    chip.textContent = status.label;
+    header.appendChild(chip);
 
     card.appendChild(header);
 

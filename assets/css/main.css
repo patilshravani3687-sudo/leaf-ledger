@@ -239,8 +239,38 @@ body {
 .plant-card-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.status-overdue {
+  background-color: #fdf0ed;
+  color: var(--color-terracotta);
+  border: 1px solid #f6cfc4;
+}
+
+.status-due {
+  background-color: #fef8ec;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.status-healthy {
+  background-color: #eaf5ee;
+  color: #1e6b42;
+  border: 1px solid #c2e5cc;
 }
 
 .plant-card-title {
